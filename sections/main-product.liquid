@@ -213,10 +213,12 @@
           {%- when 'title' -%}
             <div class="product__title" {{ block.shopify_attributes }}>
               <h1>{{ product.title | escape }}</h1>
+<div data-tag="widereview-rate" data-widereview-rule="6" data-widereview-rate="{{ product.metafields.widereview.rating }}" data-widereview-amount="{{ product.metafields.widereview.amount }}" widereview-rate-product-id="{{ product.id}}" class="widereview-rate"></div>
               <a href="{{ product.url }}" class="product__title">
                 <h2 class="h1">
                   {{ product.title | escape }}
                 </h2>
+<div data-tag="widereview-rate" data-widereview-rule="6" data-widereview-rate="{{ product.metafields.widereview.rating }}" data-widereview-amount="{{ product.metafields.widereview.amount }}" widereview-rate-product-id="{{ product.id}}" class="widereview-rate"></div>
               </a>
             </div>
           {%- when 'price' -%}
@@ -238,7 +240,8 @@
               {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
                 <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                 {{ form | payment_terms }}
-              {%- endform -%}
+              
+<div data-tag="widereview-mini" class="widereview-mini" product-id="{{ product.id }}"></div>{%- endform -%}
             </div>
           {%- when 'description' -%}
             {%- if product.description != blank -%}
@@ -448,7 +451,8 @@
                       {{ form | payment_button }}
                     {%- endif -%}
                   </div>
-                {%- endform -%}
+                
+<div data-tag="widereview-mini" class="widereview-mini" product-id="{{ product.id }}"></div>{%- endform -%}
               </product-form>
 
               {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}

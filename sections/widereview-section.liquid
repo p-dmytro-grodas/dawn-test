@@ -1,0 +1,93 @@
+{% comment %} DO NOT EDIT! This snippet is automatically added by WideReview app, all changes will be overwritten {% endcomment %}
+
+{%- assign product = all_products[section.settings.widereview_section] -%}
+
+{%- assign value = section.settings.logo_aligment -%}
+
+{% comment %} support old style {% endcomment %}
+	{%- if value == 'home_page_reviews' -%}
+		{% assign productId = 1 %}
+	{%- elsif value == 'all_reviews' -%}
+		{% assign productId = 'all' %}
+	{%- elsif value == 'product_reviews' -%}
+		{%- if product == empty -%}
+			{% assign productId = 1 %}
+		{%- else -%}
+			{% assign productId = product.id %}
+		{%- endif -%}
+{% comment %} for new style {% endcomment %}
+	{%- elsif value == true -%}
+		{% assign productId = 'all' %}
+	{%- elsif value == false -%}
+		{%- if product == empty -%}
+			{% assign productId = 'disable' %}
+		{%- else -%}
+			{% assign productId = product.id %}
+		{%- endif -%}
+	{%- else -%}
+		{% assign productId = 'disable' %}
+{%- endif -%}
+
+{% render 'widereview' with product_id: productId %}
+
+{% schema %}
+{
+  "name": {
+    "en": "WideReview Carousel",
+    "fr": "WideReview Carousel"
+  },
+  "settings": [
+    {
+      "type": "product",
+      "id": "widereview_section",
+      "label": {
+        "en": "Select the product to which this widget is linked:",
+        "fr": "Choisissez le produit auquel ce widget est rattaché"
+      }
+    },
+	{
+    "type": "checkbox",
+    "id": "logo_aligment",
+    "label": {
+		"en":"Show the reviews from all products",
+		"fr": "Afficher les avis de tous les produits"
+	},
+
+    "default": false
+   }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "WideReview Carousel",
+        "fr": "WideReview Carousel"
+      },
+      "category": {
+        "en": "Product",
+        "fr": "Produit"
+      }
+    }
+  ],
+  "blocks": [],
+  "templates": [
+	"404",
+	"article",
+	"blog",
+	"cart",
+	"collection",
+	"list-collections",
+	"customers/account",
+	"customers/activate_account",
+	"customers/addresses",
+	"customers/login",
+	"customers/order",
+	"customers/register",
+	"customers/reset_password",
+	"gift_card",
+	"index",
+	"page",
+	"password",
+	"search"
+  ]
+}
+{% endschema %}

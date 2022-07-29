@@ -1,0 +1,23 @@
+{% comment %} DO NOT EDIT! This snippet is automatically added by WideReview app, all changes will be overwritten {% endcomment %}
+
+{% unless product_id %}
+	{% assign product_id = product.id %}
+{% endunless %}
+{%- if product_id == 0 -%}
+	{% assign product_id = product.id %}
+{%- endif -%}
+{%- if product_id == 'all' -%}
+	{%- if product.id > 0 -%}
+		{% assign form_product_id = product.id %}
+	{%- else -%}
+		{% assign form_product_id = 1 %}
+	{%- endif -%}
+{%- else -%}
+	{% assign form_product_id = product_id %}
+{%- endif -%}
+
+{% unless type %}
+	{% assign type = 'liquid' %}
+{% endunless %}
+
+<div id="widereview-{{ type }}" product-id="{{ product_id }}" form-product-id="{{ form_product_id }}"></div>

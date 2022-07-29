@@ -1,0 +1,65 @@
+{% comment %} DO NOT EDIT! This snippet is automatically added by WideReview app, all changes will be overwritten {% endcomment %}
+
+{%- assign value = section.settings.logo_aligment -%}
+
+
+{%- if value == 'product_page_reviews' -%}
+  {% assign productId = 0 %}
+{%- elsif value == 'all_reviews' -%}
+  {% assign productId = 'all'  %}
+{%- elsif value == 'home_page_reviews' -%}
+  {% assign productId = 1 %}
+{%- endif -%}
+{% render 'widereview' with product_id: productId %}
+
+
+{% schema %}
+{
+  "name": {
+    "en": "WideReview Carousel",
+    "fr": "WideReview Carousel"
+  },
+  "settings": [
+	{
+    "type": "radio",
+    "id": "logo_aligment",
+    "label": {
+		"en":"Display the reviews of",
+		"fr": "Afficher les reviews de"
+	},
+
+    "options": [
+      {
+        "value": "product_page_reviews",
+        "label": {
+			"en":"Reviews of the current product",
+			"fr": "Avis pour le produit actuel"
+		}
+      },
+      {
+        "value": "all_reviews",
+        "label": {
+          "en": "All the reviews",
+          "fr": "Tous les avis"
+		}
+      }
+    ],
+    "default": "product_page_reviews"
+   }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "WideReview Carousel",
+        "fr": "WideReview Carousel"
+      },
+      "category": {
+        "en": "Product",
+        "fr": "Produit"
+      }
+    }
+  ],
+  "blocks": [],
+  "templates": ["product"]
+}
+{% endschema %}
